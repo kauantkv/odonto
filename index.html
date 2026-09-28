@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Julianne Maass | Cirurgiã-Dentista. Clínica geral em Cristal, Rio Grande do Sul.">
+  <title>Julianne Maass | Cirurgiã-Dentista</title>
+
+  <style>
+    :root{
+      --bg:#fbf8f4;
+      --surface:#ffffff;
+      --surface-2:#f4eee8;
+      --text:#292724;
+      --muted:#77716b;
+      --accent:#c98772;
+      --accent-dark:#a96450;
+      --cream:#efe6da;
+      --line:rgba(41,39,36,.10);
+      --shadow:0 20px 60px rgba(60,42,32,.10);
+      --radius:26px;
+      --max:1160px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%}
+    button,input,textarea,select{font:inherit}
+
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+
+    /* HEADER */
+    header{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:1000;
+      transition:.3s ease;
+    }
+    header.scrolled{
+      background:rgba(251,248,244,.90);
+      backdrop-filter:blur(18px);
+      box-shadow:0 8px 30px rgba(40,30,20,.07);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand-mark{
+      width:42px;height:42px;
+      border:1px solid rgba(169,100,80,.35);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:var(--accent-dark);
+      font-family:Georgia,serif;
+      font-size:20px;
+      background:#fffaf6;
+    }
+    .brand strong{
+      display:block;
+      font-family:Georgia,serif;
+      font-size:19px;
+      font-weight:500;
+      letter-spacing:.2px;
+    }
+    .brand span{
+      display:block;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+      color:var(--muted);
+      margin-top:-2px;
+    }
+    nav{display:flex;align-items:center;gap:30px}
+    nav a{
+      font-size:14px;
+      color:#5e5852;
+      transition:.25s;
+    }
+    nav a:hover{color:var(--accent-dark)}
+    .nav-cta,.btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      border:0;
+      cursor:pointer;
+      border-radius:999px;
+      padding:13px 21px;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      transition:.25s;
+      box-shadow:0 10px 25px rgba(169,100,80,.18);
+    }
+    .nav-cta:hover,.btn:hover{
+      background:var(--accent-dark);
+      transform:translateY(-2px);
+    }
+    .menu-btn{
+      display:none;
+      border:0;background:none;
+      width:44px;height:44px;
+      cursor:pointer;
+      font-size:25px;color:var(--text);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:760px;
+      padding:140px 0 80px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:680px;height:680px;
+      border-radius:50%;
+      background:#f1e5db;
+      right:-250px;top:20px;
+      z-index:-1;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:70px;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      color:var(--accent-dark);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:2.5px;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+    .eyebrow:before{
+      content:"";
+      width:28px;height:1px;background:var(--accent);
+    }
+    h1{
+      font-family:Georgia,"Times New Roman",serif;
+      font-weight:400;
+      font-size:clamp(48px,6vw,78px);
+      line-height:.98;
+      letter-spacing:-2.5px;
+      max-width:700px;
+    }
+    h1 em{font-style:italic;color:var(--accent-dark)}
+    .hero-copy{
+      margin:25px 0 30px;
+      color:var(--muted);
+      max-width:550px;
+      font-size:17px;
+    }
+    .hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+    .btn-outline{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(41,39,36,.18);
+      box-shadow:none;
+    }
+    .btn-outline:hover{background:#fff;border-color:var(--accent);color:var(--accent-dark)}
+    .trust{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      margin-top:38px;
+      flex-wrap:wrap;
+    }
+    .trust-item{
+      padding-right:22px;
+      border-right:1px solid var(--line);
+    }
+    .trust-item:last-child{border:0}
+    .trust strong{display:block;font-family:Georgia,serif;font-size:21px;font-weight:500}
+    .trust span{display:block;color:var(--muted);font-size:12px}
+    .hero-photo{
+      position:relative;
+      max-width:480px;
+      margin-left:auto;
+    }
+    .hero-photo img{
+      height:620px;
+      object-fit:cover;
+      border-radius:260px 260px 24px 24px;
+      box-shadow:var(--shadow);
+    }
+    .floating-card{
+      position:absolute;
+      left:-45px;
+      bottom:30px;
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(10px);
+      padding:20px 22px;
+      border-radius:18px;
+      box-shadow:0 15px 45px rgba(50,35,25,.13);
+      border:1px solid rgba(255,255,255,.8);
+    }
+    .floating-card b{font-family:Georgia,serif;font-size:17px;font-weight:500}
+    .floating-card span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+
+    /* SECTIONS */
+    section{padding:105px 0}
+    .section-head{
+      max-width:690px;
+      margin-bottom:50px;
+    }
+    .section-head.center{text-align:center;margin-left:auto;margin-right:auto}
+    .section-title{
+      font-family:Georgia,serif;
+      font-size:clamp(35px,4vw,53px);
+      line-height:1.05;
+      font-weight:400;
+      letter-spacing:-1px;
+      margin-bottom:15px;
+    }
+    .section-subtitle{color:var(--muted);font-size:16px}
+
+    /* SERVICES */
+    .services{background:#fff}
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .service{
+      min-height:245px;
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(145deg,#fff,#faf5f0);
+      transition:.3s;
+      position:relative;
+      overflow:hidden;
+    }
+    .service:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+    .service-icon{
+      width:55px;height:55px;
+      border-radius:50%;
+      background:#f1dfd5;
+      display:grid;place-items:center;
+      font-size:23px;
+      margin-bottom:30px;
+    }
+    .service h3{font-family:Georgia,serif;font-size:23px;font-weight:500;margin-bottom:8px}
+    .service p{color:var(--muted);font-size:14px}
+    .service-number{
+      position:absolute;
+      right:18px;top:15px;
+      color:#d8c9bd;font-family:Georgia,serif;font-size:14px;
+    }
+
+    /* ABOUT */
+    .about-grid{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:80px;
+      align-items:center;
+    }
+    .about-photo{position:relative}
+    .about-photo img{
+      height:570px;object-fit:cover;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+    .about-photo:after{
+      content:"";
+      position:absolute;
+      width:130px;height:130px;
+      border:1px solid var(--accent);
+      border-radius:50%;
+      left:-35px;bottom:-35px;
+      opacity:.35;
+      z-index:-1;
+    }
+    .about-text p{color:var(--muted);font-size:16px;margin:18px 0}
+    .about-list{list-style:none;margin:28px 0 32px}
+    .about-list li{display:flex;gap:12px;margin:13px 0;font-size:14px}
+    .check{
+      width:22px;height:22px;
+      border-radius:50%;
+      background:#f0ddd3;
+      color:var(--accent-dark);
+      display:grid;place-items:center;
+      flex:0 0 auto;font-size:12px;
+    }
+
+    /* GALLERY */
+    .gallery{background:#f4eee8}
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      grid-auto-rows:230px;
+      gap:14px;
+    }
+    .gallery-item{
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      background:#ddd;
+    }
+    .gallery-item:first-child{grid-row:span 2}
+    .gallery-item img{height:100%;object-fit:cover;transition:.5s}
+    .gallery-item:hover img{transform:scale(1.045)}
+    .gallery-caption{
+      position:absolute;
+      left:14px;right:14px;bottom:14px;
+      padding:10px 13px;
+      background:rgba(25,21,19,.65);
+      color:#fff;
+      border-radius:12px;
+      font-size:12px;
+      backdrop-filter:blur(8px);
+    }
+
+    /* EXPERIENCE */
+    .experience{
+      background:#2d2926;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .experience:before{
+      content:"";
+      position:absolute;
+      width:500px;height:500px;border:1px solid rgba(255,255,255,.08);
+      border-radius:50%;right:-160px;top:-180px;
+    }
+    .experience .section-subtitle{color:#c8c0ba}
+    .experience-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .exp-card{
+      padding:28px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      background:rgba(255,255,255,.045);
+    }
+    .exp-card span{font-size:12px;color:#c9a393;text-transform:uppercase;letter-spacing:1.5px}
+    .exp-card h3{font-family:Georgia,serif;font-size:24px;font-weight:400;margin:10px 0}
+    .exp-card p{color:#bdb5ae;font-size:14px}
+
+    /* CTA */
+    .cta-wrap{padding-top:0}
+    .cta{
+      background:linear-gradient(135deg,#f1ded3,#ead2c6);
+      border-radius:32px;
+      padding:60px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+      overflow:hidden;
+      position:relative;
+    }
+    .cta:after{
+      content:"✦";
+      position:absolute;
+      font-size:230px;
+      color:rgba(255,255,255,.22);
+      right:30px;bottom:-80px;
+      font-family:Georgia,serif;
+    }
+    .cta h2{
+      font-family:Georgia,serif;
+      font-size:clamp(34px,4vw,51px);
+      font-weight:400;
+      line-height:1.05;
+      max-width:670px;
+    }
+    .cta p{color:#6e5f57;margin-top:12px;max-width:620px}
+    .cta .btn{position:relative;z-index:2;white-space:nowrap}
+
+    /* CONTACT */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:20px;
+    }
+    .contact-card,.map-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+    }
+    .contact-card h3,.map-card h3{font-family:Georgia,serif;font-size:29px;font-weight:400;margin-bottom:24px}
+    .contact-line{display:flex;gap:15px;margin:22px 0}
+    .contact-icon{
+      width:42px;height:42px;border-radius:50%;
+      background:#f1e1d8;display:grid;place-items:center;
+      flex:0 0 auto;
+    }
+    .contact-line small{color:var(--muted);display:block;font-size:11px;text-transform:uppercase;letter-spacing:1.3px}
+    .contact-line strong{font-size:14px;font-weight:600}
+    .map{
+      min-height:280px;
+      border-radius:20px;
+      background:
+        linear-gradient(rgba(240,228,218,.82),rgba(240,228,218,.82)),
+        repeating-linear-gradient(45deg,transparent 0 20px,#fff 20px 22px);
+      display:grid;place-items:center;
+      text-align:center;padding:30px;
+    }
+    .map-pin{font-size:36px;margin-bottom:8px}
+    .map p{color:var(--muted);font-size:14px}
+    .map a{display:inline-flex;margin-top:15px;color:var(--accent-dark);font-weight:700;font-size:13px}
+
+    /* FOOTER */
+    footer{
+      background:#24211f;
+      color:#d5cec8;
+      padding:40px 0;
+    }
+    .footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .footer-brand{font-family:Georgia,serif;font-size:20px;color:#fff}
+    .footer-row p{font-size:12px;color:#948d87}
+    .social{display:flex;gap:10px}
+    .social a{
+      width:38px;height:38px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.12);
+      display:grid;place-items:center;font-size:13px;
+    }
+    .social a:hover{background:var(--accent);color:#fff}
+
+    /* FLOATING WHATSAPP */
+    .wa-float{
+      position:fixed;
+      z-index:999;
+      right:22px;bottom:22px;
+      width:58px;height:58px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:#25d366;color:white;
+      font-size:27px;
+      box-shadow:0 12px 35px rgba(0,0,0,.20);
+      transition:.25s;
+    }
+    .wa-float:hover{transform:scale(1.08)}
+
+    /* MODAL */
+    .modal{
+      position:fixed;inset:0;
+      background:rgba(25,20,17,.58);
+      backdrop-filter:blur(7px);
+      display:none;align-items:center;justify-content:center;
+      z-index:2000;padding:20px;
+    }
+    .modal.active{display:flex}
+    .modal-box{
+      width:min(500px,100%);
+      background:#fff;
+      border-radius:28px;
+      padding:34px;
+      box-shadow:0 30px 90px rgba(0,0,0,.25);
+      position:relative;
+      animation:pop .25s ease;
+    }
+    @keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+    .close{
+      position:absolute;right:18px;top:18px;
+      width:38px;height:38px;border-radius:50%;
+      border:1px solid var(--line);background:#fff;cursor:pointer;
+      font-size:20px;
+    }
+    .modal-box h2{font-family:Georgia,serif;font-size:34px;font-weight:400}
+    .modal-box p{color:var(--muted);font-size:13px;margin:8px 0 25px}
+    .field{margin:13px 0}
+    .field label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}
+    .field input,.field select{
+      width:100%;padding:13px 14px;
+      border:1px solid #ddd5ce;border-radius:12px;
+      outline:none;background:#fff;
+    }
+    .field input:focus,.field select:focus{border-color:var(--accent)}
+    .modal .btn{width:100%;margin-top:10px}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:950px){
+      .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+      .hero{padding-top:120px}
+      .hero-photo{margin:20px auto 0;max-width:500px}
+      .hero-photo img{height:520px}
+      .floating-card{left:15px}
+      .service-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:260px}
+      .gallery-item:first-child{grid-row:span 1}
+      .gallery-item:first-child{grid-column:span 2}
+      .experience-grid{grid-template-columns:1fr}
+      .about-photo{max-width:560px;margin:auto}
+      .cta{padding:45px 35px}
+    }
+
+    @media(max-width:700px){
+      .container{width:min(100% - 28px,var(--max))}
+      .nav{height:70px}
+      nav{
+        position:absolute;top:70px;left:14px;right:14px;
+        background:#fff;
+        padding:18px;
+        border-radius:18px;
+        box-shadow:0 15px 40px rgba(30,20,15,.12);
+        display:none;flex-direction:column;align-items:stretch;gap:3px;
+      }
+      nav.open{display:flex}
+      nav a{padding:12px 10px}
+      .nav-cta{display:none}
+      .menu-btn{display:block}
+      .hero{min-height:auto;padding:105px 0 65px}
+      .hero:before{width:420px;height:420px;right:-250px}
+      h1{font-size:50px;letter-spacing:-1.7px}
+      .hero-copy{font-size:15px}
+      .trust{gap:14px}
+      .trust-item{padding-right:14px}
+      .trust strong{font-size:18px}
+      section{padding:75px 0}
+      .service-grid{grid-template-columns:1fr}
+      .service{min-height:210px}
+      .about-grid{gap:40px}
+      .about-photo img{height:450px}
+      .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px;gap:8px}
+      .gallery-item{border-radius:14px}
+      .gallery-item:first-child{grid-column:span 2}
+      .gallery-caption{font-size:10px;bottom:7px;left:7px;right:7px}
+      .cta{display:block;padding:35px 25px;border-radius:24px}
+      .cta .btn{margin-top:25px}
+      .contact-card,.map-card{padding:25px}
+      .footer-row{flex-direction:column;text-align:center}
+      .wa-float{width:53px;height:53px;right:16px;bottom:16px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header id="header">
+  <div class="container nav">
+    <a href="#inicio" class="brand" aria-label="Julianne Maass">
+      <div class="brand-mark">JM</div>
+      <div>
+        <strong>Julianne Maass</strong>
+        <span>Cirurgiã-Dentista</span>
+      </div>
+    </a>
+
+    <nav id="nav">
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <a class="nav-cta" href="#contato">Agendar consulta</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Odontologia com cuidado e naturalidade</div>
+        <h1>Seu sorriso merece <em>atenção especial.</em></h1>
+        <p class="hero-copy">
+          Atendimento odontológico personalizado em Cristal/RS, com foco em
+          saúde bucal, estética e uma experiência acolhedora em cada consulta.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn" data-open-modal>Agendar atendimento <span>→</span></button>
+          <a class="btn btn-outline" href="#servicos">Conhecer tratamentos</a>
+        </div>
+
+        <div class="trust">
+          <div class="trust-item">
+            <strong>CRO/RS 31060</strong>
+            <span>Cirurgiã-Dentista</span>
+          </div>
+          <div class="trust-item">
+            <strong>Clínica Geral</strong>
+            <span>Atendimento personalizado</span>
+          </div>
+          <div class="trust-item">
+            <strong>Cristal • RS</strong>
+            <span>Rua Bento Gonçalves, 91</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo reveal">
+        <img src="https://i.imgur.com/bHtwLlV.jpeg" alt="Atendimento odontológico Julianne Maass">
+        <div class="floating-card">
+          <b>Julianne Maass</b>
+          <span>Cirurgiã-Dentista • CRO/RS 31060</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Cuidado completo</div>
+        <h2 class="section-title">Tratamentos pensados para você</h2>
+        <p class="section-subtitle">
+          Uma abordagem cuidadosa para manter sua saúde bucal e valorizar a beleza natural do seu sorriso.
+        </p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service reveal">
+          <span class="service-number">01</span>
+          <div class="service-icon">✦</div>
+          <h3>Clínica Geral</h3>
+          <p>Acompanhamento odontológico, prevenção e cuidados essenciais para sua saúde bucal.</p>
+        </article>
+
+        <article class="service reveal">
+          <span class="service-number">02</span>
+          <div class="service-icon">✧</div>
+          <h3>Clareamento</h3>
+          <p>Procedimentos estéticos para um sorriso mais iluminado, respeitando cada caso.</p>
+        </article>
+
+        <article class="service reveal">
+          <span class="service-number">03</span>
+          <div class="service-icon">♡</div>
+          <h3>Limpeza</h3>
+          <p>Higienização profissional e orientação para uma rotina de cuidados mais eficiente.</p>
+        </article>
+
+        <article class="service reveal">
+          <span class="service-number">04</span>
+          <div class="service-icon">◌</div>
+          <h3>Estética Dental</h3>
+          <p>Planejamento individualizado para harmonizar o sorriso de forma natural e cuidadosa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container about-grid">
+      <div class="about-photo reveal">
+        <img src="https://i.imgur.com/U4dzEKD.jpeg" alt="Julianne Maass - consultório odontológico">
+      </div>
+
+      <div class="reveal">
+        <div class="eyebrow">Conheça a profissional</div>
+        <h2 class="section-title">Um atendimento próximo, leve e personalizado.</h2>
+        <p>
+          Cada sorriso tem uma história e necessidades diferentes. Por isso, o atendimento
+          é pensado de maneira individual, buscando unir saúde, estética e conforto.
+        </p>
+        <p>
+          A proposta é proporcionar uma experiência acolhedora desde a primeira conversa,
+          com orientação clara sobre cada etapa do cuidado odontológico.
+        </p>
+
+        <ul class="about-list">
+          <li><span class="check">✓</span> Atendimento individualizado</li>
+          <li><span class="check">✓</span> Foco em prevenção e saúde bucal</li>
+          <li><span class="check">✓</span> Procedimentos estéticos com naturalidade</li>
+          <li><span class="check">✓</span> Ambiente acolhedor em Cristal/RS</li>
+        </ul>
+
+        <button class="btn" data-open-modal>Quero cuidar do meu sorriso →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="gallery" id="resultados">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Resultados e rotina</div>
+        <h2 class="section-title">Um pouco do trabalho da clínica</h2>
+        <p class="section-subtitle">
+          Confira registros de tratamentos, orientações e detalhes do atendimento.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://i.imgur.com/MJuyhoY.jpeg" alt="Resultado odontológico">
+          <div class="gallery-caption">Resultados que valorizam a naturalidade do sorriso</div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://i.imgur.com/7ztqUCU.jpeg" alt="Procedimento odontológico">
+          <div class="gallery-caption">Cuidado em cada detalhe</div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://i.imgur.com/U4dzEKD.jpeg" alt="Clínica Julianne Maass">
+          <div class="gallery-caption">Experiência acolhedora</div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://i.imgur.com/bHtwLlV.jpeg" alt="Atendimento odontológico">
+          <div class="gallery-caption">Odontologia personalizada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Por que escolher a clínica</div>
+        <h2 class="section-title">Cuidar do sorriso também é cuidar de você.</h2>
+        <p class="section-subtitle">
+          Um atendimento que busca unir conhecimento técnico, escuta e atenção aos detalhes.
+        </p>
+      </div>
+
+      <div class="experience-grid">
+        <article class="exp-card reveal">
+          <span>01 • Atendimento</span>
+          <h3>Olhar individual</h3>
+          <p>Cada consulta começa entendendo as necessidades e objetivos de cada paciente.</p>
+        </article>
+        <article class="exp-card reveal">
+          <span>02 • Experiência</span>
+          <h3>Ambiente acolhedor</h3>
+          <p>Uma experiência pensada para deixar o atendimento mais confortável e tranquilo.</p>
+        </article>
+        <article class="exp-card reveal">
+          <span>03 • Resultado</span>
+          <h3>Naturalidade</h3>
+          <p>Planejamento voltado para resultados harmônicos, respeitando as características de cada sorriso.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-wrap">
+    <div class="container">
+      <div class="cta reveal">
+        <div>
+          <h2>Pronto para dar atenção ao seu sorriso?</h2>
+          <p>Entre em contato e solicite informações sobre horários e atendimento.</p>
+        </div>
+        <button class="btn" data-open-modal>Solicitar atendimento →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">Onde estamos</div>
+        <h2 class="section-title">Agende sua consulta</h2>
+        <p class="section-subtitle">Fale com a clínica para consultar disponibilidade e informações sobre atendimento.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <h3>Informações</h3>
+
+          <div class="contact-line">
+            <div class="contact-icon">⌖</div>
+            <div>
+              <small>Endereço</small>
+              <strong>Rua Bento Gonçalves, 91<br>Centro — Cristal/RS<br>CEP 96195-000</strong>
+            </div>
+          </div>
+
+          <div class="contact-line">
+            <div class="contact-icon">◷</div>
+            <div>
+              <small>Atendimento</small>
+              <strong>Consulte os horários disponíveis</strong>
+            </div>
+          </div>
+
+          <div class="contact-line">
+            <div class="contact-icon">◎</div>
+            <div>
+              <small>Instagram</small>
+              <strong>@dentistajulianne</strong>
+            </div>
+          </div>
+
+          <button class="btn" data-open-modal style="width:100%;margin-top:10px">Solicitar horário</button>
+        </div>
+
+        <div class="map-card reveal">
+          <h3>Localização</h3>
+          <div class="map">
+            <div>
+              <div class="map-pin">⌖</div>
+              <strong>Julianne Maass — Cirurgiã-Dentista</strong>
+              <p>Rua Bento Gonçalves, 91 — Cristal, Rio Grande do Sul</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Bento+Goncalves%2C+91%2C+Cristal%2C+RS" target="_blank" rel="noopener">
+                Abrir no Google Maps →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div>
+      <div class="footer-brand">Julianne Maass</div>
+      <p>Cirurgiã-Dentista • CRO/RS 31060</p>
+    </div>
+    <div class="social">
+      <a href="https://www.instagram.com/dentistajulianne/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+    </div>
+    <p>© <span id="year"></span> Julianne Maass. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="#contato" aria-label="Agendar atendimento" title="Agendar atendimento">◔</a>
+
+<!-- MODAL DE AGENDAMENTO -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="closeModal" aria-label="Fechar">×</button>
+    <h2>Vamos conversar?</h2>
+    <p>Preencha os dados abaixo. O formulário prepara uma mensagem para você enviar pelo WhatsApp da clínica.</p>
+
+    <form id="appointmentForm">
+      <div class="field">
+        <label for="name">Seu nome</label>
+        <input id="name" name="name" type="text" placeholder="Digite seu nome" required>
+      </div>
+
+      <div class="field">
+        <label for="service">Interesse</label>
+        <select id="service" name="service" required>
+          <option value="">Selecione</option>
+          <option>Consulta / avaliação</option>
+          <option>Limpeza</option>
+          <option>Clareamento</option>
+          <option>Estética dental</option>
+          <option>Clínica geral</option>
+          <option>Outro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="date">Melhor dia/horário</label>
+        <input id="date" name="date" type="text" placeholder="Ex.: terça à tarde">
+      </div>
+
+      <button class="btn" type="submit">Continuar para WhatsApp →</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ===== CONFIGURAÇÕES =====
+  // O número do WhatsApp não aparece completo na referência enviada.
+  // Substitua pelo número da clínica no formato internacional, somente números.
+  const WHATSAPP_NUMBER = "SEU_NUMERO_AQUI";
+
+  // Header com efeito ao rolar
+  const header = document.getElementById("header");
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 30);
+  });
+
+  // Menu mobile
+  const menuBtn = document.getElementById("menuBtn");
+  const nav = document.getElementById("nav");
+
+  menuBtn.addEventListener("click", () => {
+    nav.classList.toggle("open");
+    menuBtn.textContent = nav.classList.contains("open") ? "×" : "☰";
+  });
+
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuBtn.textContent = "☰";
+    });
+  });
+
+  // Animações de entrada
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+  // Modal
+  const modal = document.getElementById("modal");
+  const closeModal = document.getElementById("closeModal");
+
+  function openModal(){
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => document.getElementById("name").focus(), 100);
+  }
+
+  function close(){
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-open-modal]").forEach(btn => {
+    btn.addEventListener("click", openModal);
+  });
+
+  closeModal.addEventListener("click", close);
+
+  modal.addEventListener("click", e => {
+    if(e.target === modal) close();
+  });
+
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape") close();
+  });
+
+  // Formulário -> WhatsApp
+  document.getElementById("appointmentForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const service = document.getElementById("service").value;
+    const date = document.getElementById("date").value.trim() || "a combinar";
+
+    const message =
+      `Olá! Meu nome é ${name}. Gostaria de solicitar um atendimento odontológico.` +
+      `%0A%0AInteresse: ${service}` +
+      `%0AMelhor dia/horário: ${date}`;
+
+    if(WHATSAPP_NUMBER === "SEU_NUMERO_AQUI"){
+      alert("Para ativar o WhatsApp, abra este arquivo e substitua SEU_NUMERO_AQUI pelo número da clínica no código JavaScript.");
+      return;
+    }
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
+    close();
+  });
+
+  // Ano automático
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
